@@ -1,13 +1,21 @@
-import './App.css';
-import Header from './components/Header';
+import * as React from "react";
+import { Provider } from "react-redux";
+import { Provider as ReduxQueryProvider } from "redux-query-react";
 
-function App() {
+import TopStories from "../components/TopStories";
+import { getQueries } from "../store";
+
+const App = props => {
   return (
-    <div className="App">
-      <h2>Coding Assignment</h2>
-      <Header/>
-    </div>
+    <Provider store={props.store}>
+      <ReduxQueryProvider queriesSelector={getQueries}>
+        <>
+          <h1>Hacker News</h1>
+          <TopStories />
+        </>
+      </ReduxQueryProvider>
+    </Provider>
   );
-}
+};
 
 export default App;
